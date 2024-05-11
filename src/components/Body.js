@@ -1,8 +1,9 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -13,7 +14,7 @@ const Body = () => {
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   // Whenever state variables are updated, React triggers a reconciliation cycle(re-renders the component)
-  console.log("Body rendered", listOfRestaurants);
+  // console.log("Body rendered", listOfRestaurants);
 
   useEffect(() => {
     fetchData();
@@ -26,9 +27,7 @@ const Body = () => {
 
     const json = await data.json();
 
-    console.log(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    // console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setListOfRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -49,6 +48,8 @@ const Body = () => {
   // if(listOfRestaurants.length === 0){
   //   return <Shimmer />
   // }
+
+  const { loggedInUser, xsetUserName } = useContext(UserContext);
 
   return listOfRestaurants?.length == 0 ? (
     <Shimmer />
@@ -87,14 +88,23 @@ const Body = () => {
             className="px-4 py-2 bg-gray-100 rounded-lg"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4.4
+                (res) => res.info.avgRating >= 4.2
               );
-              setListOfRestaurants(filteredList);
+              setFilteredRestaurants(filteredList);
               console.log(filteredList);
             }}
           >
             Top Rated Restaurants
           </button>
+        </div>
+        <div className="search m-4 p-4 flex items-center">
+          <label htmlFor="">Username: </label>
+          <input
+            type="text"
+            className="border border-black m-1"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex flex-wrap">
