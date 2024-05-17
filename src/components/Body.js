@@ -49,7 +49,7 @@ const Body = () => {
   //   return <Shimmer />
   // }
 
-  const { loggedInUser, xsetUserName } = useContext(UserContext);
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   return listOfRestaurants?.length == 0 ? (
     <Shimmer />
