@@ -10,12 +10,12 @@ const Header = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  const {loggedInUser} = useContext(UserContext);
-  console.log(loggedInUser);
+  const { loggedInUser } = useContext(UserContext);
+  // console.log(loggedInUser);
 
   //Subscribing to the store using a selector
   const cartItems = useSelector((store) => store.cart.items);
-
+  console.log(cartItems);
   return (
     <div className="flex justify-between bg-pink-200 sm:bg-yellow-100 shadow-lg mb-2">
       <div className="logo-container">
@@ -46,7 +46,11 @@ const Header = () => {
               Grocery
             </Link>
           </li>
-          <li className="px-4">Cart ({cartItems.length})</li>
+          <li className="px-4">
+            <Link className="header-link" to="/cart">
+              Cart ({cartItems.length})
+            </Link>
+          </li>
           <li>
             <button
               className="login"

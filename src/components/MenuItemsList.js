@@ -3,13 +3,12 @@ import { addItem } from "../utils/cartSlice";
 import { CDN_URL } from "../utils/constants";
 
 const MenuItemsList = ({ items }) => {
-
   const dispatch = useDispatch();
 
-  const handleAddItem = ()=>{
+  const handleAddItem = (item) => {
     // Dispatch an action
-    dispatch(addItem("pizza"))
-  }
+    dispatch(addItem(item));
+  };
 
   return (
     <>
@@ -33,7 +32,12 @@ const MenuItemsList = ({ items }) => {
           </div>
           <div className="w-3/12 p-4">
             <div className="absolute">
-              <button className="p-2 mx-24 rounded-lg bg-white shadow-lg" onClick={handleAddItem}>
+              <button
+                className="p-2 mx-24 rounded-lg bg-white shadow-lg"
+                onClick={() => 
+                  handleAddItem(item)
+                }
+              >
                 ADD+
               </button>
             </div>

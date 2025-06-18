@@ -24,3 +24,8 @@ Footer
  - Connect our store to our app
  - Slice (cartSlice)
  - Selector 
+
+# Types of testing (developer)
+ - Unit testing
+ - Integration testing
+ - End to End Testing - e2e testing
