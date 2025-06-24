@@ -1,3 +1,4 @@
+import React from "react";
 import { LOGO_URL } from "../utils/constants";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
@@ -15,7 +16,8 @@ const Header = () => {
 
   //Subscribing to the store using a selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  // console.log(cartItems);
+  
   return (
     <div className="flex justify-between bg-pink-200 sm:bg-yellow-100 shadow-lg mb-2">
       <div className="logo-container">
