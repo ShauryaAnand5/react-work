@@ -1,3 +1,4 @@
+import React from 'react';
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
@@ -29,10 +30,10 @@ const Body = () => {
 
     // console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setListOfRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -59,6 +60,7 @@ const Body = () => {
         <div className="search m-4 p-4">
           <input
             type="text"
+            data-testid = "searchInput"
             className="border border-solid border-black"
             value={searchText}
             onChange={(e) => {
@@ -86,12 +88,13 @@ const Body = () => {
         <div className="search m-4 p-4 flex items-center">
           <button
             className="px-4 py-2 bg-gray-100 rounded-lg"
+            data-testid = "topRatedButton"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating >= 4.1
+                (res) => res.info.avgRating >= 4.2
               );
               setFilteredRestaurants(filteredList);
-              console.log(filteredList);
+              // console.log(filteredList);
             }}
           >
             Top Rated Restaurants
