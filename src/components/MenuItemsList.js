@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 import { CDN_URL } from "../utils/constants";
@@ -12,9 +13,10 @@ const MenuItemsList = ({ items }) => {
 
   return (
     <>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <div
-          key={item.card.info.id}
+          data-testid = "foodItems"
+          key={`${item.card.info.id}-${index}`}
           className="p-2 m-2 border-gray-300 border-b-2 text-left flex justify-between"
         >
           <div className="w-9/12">
